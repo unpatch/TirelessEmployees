@@ -1,5 +1,5 @@
 # 👷‍♀️ Schedule I: Tireless Employees Mod
-
+![Tireless Employees banner](./.assets/TirelessEmployees.png?raw=true)
 **Tired of your so-called "employees" clocking out at 4 AM just because their shift ends?**
 Well, no more! With **Tireless Employees**, your workforce keeps grinding *even after the clock stops* to keep your production line running at full speed.
 
