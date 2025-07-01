@@ -1,7 +1,7 @@
 # 👷‍♀️ Schedule I: Tireless Employees Mod
 
-**Tired of your so-called "employees" clocking out at 4 AM just because time freezes?**
-Well, no more! With **Tireless Employees**, your workforce keeps grinding *through the temporal apocalypse* to keep your production line running at full speed.
+**Tired of your so-called "employees" clocking out at 4 AM just because their shift ends?**
+Well, no more! With **Tireless Employees**, your workforce keeps grinding *even after the clock stops* to keep your production line running at full speed.
 
 But wait, there’s more! 🌱
 
