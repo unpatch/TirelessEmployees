@@ -1,9 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<GameDir>C:\Program Files (x86)\Steam\steamapps\common\Schedule I</GameDir>
+	</PropertyGroup>
+
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
-		<LangVersion>default</LangVersion>
 		<IsPackable>false</IsPackable>
 		<AssemblyVersion>1.0.0</AssemblyVersion>
 		<FileVersion>1.0.0</FileVersion>
@@ -14,23 +18,56 @@
 		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
 		<AssemblyName>TirelessEmployees</AssemblyName>
 		<RootNamespace>TirelessEmployees</RootNamespace>
+		<Configurations>Debug_IL2CPP;Release_IL2CPP;Debug_Mono;Release_Mono</Configurations>
+		<Platforms>x64</Platforms>
 	</PropertyGroup>
+
+	<PropertyGroup Condition="$(Configuration.Contains('IL2CPP'))">
+		<DefineConstants>$(DefineConstants);IL2CPP</DefineConstants>
+		<AssemblyName>TirelessEmployees.IL2CPP</AssemblyName>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$(Configuration.Contains('Mono'))">
+		<TargetFramework>net481</TargetFramework>
+		<DefineConstants>$(DefineConstants);MONO</DefineConstants>
+		<AssemblyName>TirelessEmployees.Mono</AssemblyName>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$(Configuration.StartsWith('Debug'))">
+		<AssemblyName>$(AssemblyName).Debug</AssemblyName>
+		<DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$(Configuration.StartsWith('Release'))">
+		<Optimize>True</Optimize>
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
 
 	<ItemGroup>
 		<Compile Include="src\Core.cs" />
 		<Compile Include="src\DayNeverEnds.cs" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Reference Include="MelonLoader">
-			<HintPath>lib\MelonLoader.dll</HintPath>
-		</Reference>
-		<Reference Include="0Harmony">
-			<HintPath>lib\0Harmony.dll</HintPath>
-		</Reference>
+	<ItemGroup Condition="$(Configuration.Contains('IL2CPP'))">
 		<Reference Include="Assembly-CSharp">
-			<HintPath>lib\Assembly-CSharp.dll</HintPath>
+			<HintPath>$(GameDir)\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
 		</Reference>
 	</ItemGroup>
+
+	<ItemGroup Condition="$(Configuration.Contains('Mono'))">
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(GameDir)\Schedule I_Data\Managed\Assembly-CSharp.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="HarmonyX" Version="2.10.2" />
+		<PackageReference Include="LavaGang.MelonLoader" Version="0.7.1" />
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(GameDir)' != null">
+		<Exec Command="COPY &quot;$(TargetPath)&quot; &quot;$(GameDir)\Mods&quot;" />
+	</Target>
 
 </Project>
