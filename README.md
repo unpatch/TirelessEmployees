@@ -16,7 +16,6 @@ But wait, there’s more! 🌱
 
 ## 📋 Requirements
 
-- 💊 Schedule I - Public branch (IL2CPP)
 - 🍉 [MelonLoader](https://github.com/LavaGang/MelonLoader)
 
 ## 🔧 Installation
