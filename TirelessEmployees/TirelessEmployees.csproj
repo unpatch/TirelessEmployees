@@ -45,8 +45,8 @@
 
 
 	<ItemGroup>
-		<Compile Include="src\Core.cs" />
-		<Compile Include="src\DayNeverEnds.cs" />
+		<Compile Include="Core.cs" />
+		<Compile Include="DayNeverEnds.cs" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(Configuration.Contains('IL2CPP'))">
